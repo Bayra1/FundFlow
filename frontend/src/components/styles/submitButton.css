@@ -1,0 +1,16 @@
+#login-button {  
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #0166FF;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  transition: 0.2s;
+}
+
+#login-button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

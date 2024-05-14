@@ -1,5 +1,10 @@
+import { Sign_Up } from "@/feature";
+
 export default function Home() {
   return (
-    <div>hi</div>
+    <div>
+      <Sign_Up />
+      {/* <WarningModel/> */}
+    </div>
   );
 }
