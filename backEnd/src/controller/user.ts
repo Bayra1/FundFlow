@@ -1,4 +1,3 @@
-
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { userModel } from "../model/user";
@@ -58,14 +57,16 @@ const LogIn = async (req: any, res: any) => {
     const user = await userModel.findOne({
       email: { $regex: new RegExp(`^${email}$`, "i") },
     });
-    
+
     if (!user)
-      return res
-        .status(400)
-        .send({
-          success: false,
-          message: "user with this email does not exist",
-        });
+      return res.status(400).send({
+        success: false,
+        message: "user with this email does not exist",
+      });
+
+    const id = user._id;
+    const name = user.name;
+    const userEmail = user.email;
 
     const legitPassword = await bcrypt.compare(password, user?.password!);
     if (!legitPassword)
@@ -73,13 +74,14 @@ const LogIn = async (req: any, res: any) => {
         .status(400)
         .send({ success: false, message: "Password does not match" });
 
-    const token = jwt.sign({ userId: user._id }, "secret-key", {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign({ id, name, userEmail }, "secret-key");
 
-    res
-      .status(200)
-      .json({ success: true, message: "successfully logged in", token });
+    res.status(200).json({
+      success: true,
+      message: "successfully logged in",
+      token,
+    });
+    
   } catch (error) {
     console.error("Error during LogIn:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

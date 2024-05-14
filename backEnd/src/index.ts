@@ -4,6 +4,7 @@ import cors from "cors";
 import bp from "body-parser";
 import ConnectToMongoDB from "./utils/database";
 import { user } from "./router/user";
+import { createInformation } from "./router/info";
 
 dotenv.config();
 ConnectToMongoDB()
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 8000;
 app.use(bp.json());
 app.use(cors());
 app.use("/user", user);
+app.use("/createInformation", createInformation);
 
 app.get("/", (_, res) => {
   res.status(200).send({
