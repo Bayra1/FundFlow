@@ -1,3 +1,4 @@
+'use client'
 import { useFormik } from "formik";
 import { LineTwo } from "./LineTwo";
 import { SubTitle } from "./SubTitle";

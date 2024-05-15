@@ -1,10 +1,11 @@
-import { Sign_Up } from "@/feature";
+import { Dashboard, Sign_Up } from "@/feature";
 
 export default function Home() {
   return (
     <div>
-      <Sign_Up />
+      {/* <Sign_Up /> */}
       {/* <WarningModel/> */}
+      <Dashboard/>
     </div>
   );
 }

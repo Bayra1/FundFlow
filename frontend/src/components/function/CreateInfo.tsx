@@ -6,13 +6,15 @@ const backEnd = "http://localhost:8000/createInformation/createInfo";
 export const Create_Info_Func = async (
   currency: string,
   budget: string,
-  readiness: boolean
+  readiness: boolean,
+  userId: string
 ) => {
   try {
     const response = await axios.post(backEnd, {
       currency,
       budget,
       readiness,
+      userId,
     });
 
     if (response.status === 201) {

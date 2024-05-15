@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import { LineOne } from "./LineOne";
 import { SubTitle } from "./SubTitle";

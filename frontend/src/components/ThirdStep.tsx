@@ -1,12 +1,18 @@
+"use client";
 import { useState } from "react";
 import { LineThree } from "./LineThree";
 import { SubTitle } from "./SubTitle";
 import { IncomeIcon } from "./icons";
-import "./styles/submitButton.css";
 import { Create_Info_Func } from "./function";
 import { CheckFinalInfo_Func } from "./function/CheckFinalStep";
 import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import "./styles/submitButton.css";
+import jwt from "jsonwebtoken";
+
+type decodedTokenType = {
+  id: string;
+};
 
 export const ThirdStep = () => {
   const [isState, setIsState] = useState(false);
@@ -19,8 +25,20 @@ export const ThirdStep = () => {
   const HandleSubmit = () => {
     var currency: any = localStorage.getItem("currency");
     var budget: any = localStorage.getItem("budget");
+    var currentToken = localStorage.getItem("token");
+    const decodedToken = jwt.decode(currentToken!) as decodedTokenType;
+
     CheckFinalInfo_Func({ currency, budget });
-    Create_Info_Func(currency!, budget!, isState ? true : false);
+    Create_Info_Func(
+      currency!,
+      budget!,
+      isState ? true : false,
+      decodedToken.id
+    );
+
+    localStorage.removeItem("currency");
+    localStorage.removeItem("budget");
+
     router.push("/Dashboard");
   };
 
