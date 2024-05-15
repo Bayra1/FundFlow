@@ -1,14 +1,30 @@
-import { LineOne } from "./LineOne";
+import { useFormik } from "formik";
 import { LineTwo } from "./LineTwo";
 import { SubTitle } from "./SubTitle";
-import { CurrencyIcon, IncomeIcon } from "./icons";
+import { IncomeIcon } from "./icons";
 import "./styles/submitButton.css";
+import { BudgetValidation } from "./validation";
+import { HelperText } from "./HelperText";
+import { SecondStep_Func } from "./function";
 
 type propsType = {
   nextPage: () => void;
 };
 
-export const SecondStep = ({nextPage}:propsType) => {
+export const SecondStep = ({ nextPage }: propsType) => {
+  const formik = useFormik({
+    initialValues: {
+      budget: "",
+    },
+    validationSchema: BudgetValidation,
+    onSubmit: async (values) => {
+      SecondStep_Func(values.budget);
+      if (!formik.errors.budget) {
+        nextPage();
+      }
+    },
+  });
+
   return (
     <main className="flex flex-col">
       <section className="flex flex-col gap-[20px] mt-[20px] mb-[40px]">
@@ -23,17 +39,25 @@ export const SecondStep = ({nextPage}:propsType) => {
           </b>
         </div>
         <input
+          name="budget"
+          value={formik.values.budget}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           className="w-[384px] h-[48px] bg-[#F3F4F6] p-[10px] rounded text-black border-2 border-solid"
           type="text"
           placeholder="budget amount ?"
         />
+        <HelperText error={formik.errors.budget!} />
         <p className="w-[384px] text-center text-[#475569]">
           How much cash do you have in your budget ?
         </p>
       </section>
       <div className="w-full flex-col flex justify-center items-center mt-[40px]">
         <button
-        onClick={nextPage}
+          type="submit"
+          onClick={() => {
+            formik.handleSubmit();
+          }}
           id="login-button"
           className="w-[384px] h-[48px] bg-[#0166FF] text-white rounded-2xl"
         >

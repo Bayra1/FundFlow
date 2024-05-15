@@ -4,10 +4,10 @@ const InfoSchema = new mongoose.Schema({
   currency: {
     type: String,
     required: true,
-    enum: ["tugrik", "dollar"],
-    default: "tugrik",
+    enum: ["Tugrik ₮", "Dollar $"],
+    default: "Dollar $",
   },
-  budget: Number,
+  budget: String,
   readiness: Boolean,
 });
 

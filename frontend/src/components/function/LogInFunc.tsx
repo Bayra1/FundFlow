@@ -3,17 +3,17 @@ import toast from "react-hot-toast";
 
 const backEnd = "http://localhost:8000/user/logIn";
 
-export const Log_In_Function = async (email: string, password: string) => {  
+export const Log_In_Function = async (email: string, password: string) => {
   try {
     const response = await axios.post(backEnd, {
       email: email,
       password: password,
     });
 
-    if (response.status === 200) {
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+    const token = response.data.token;
+    localStorage.setItem("token", token);
 
+    if (response.status === 200) {
       toast.success("Login successful", {
         position: "top-center",
         style: {
@@ -21,7 +21,7 @@ export const Log_In_Function = async (email: string, password: string) => {
           transition: "opacity 0.5s ease",
         },
         duration: 5000,
-      });      
+      });
     } else {
       return toast("Failed to perform", {
         icon: "💀",

@@ -28,4 +28,5 @@ export const ThreeSteps = () => {
   };
 
   return <div className="w-full h-screen bg-white">{renderStep()}</div>;
+  // return <div className="w-full h-screen bg-white"><ThirdStep/></div>
 };

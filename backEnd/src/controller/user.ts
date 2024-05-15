@@ -74,14 +74,15 @@ const LogIn = async (req: any, res: any) => {
         .status(400)
         .send({ success: false, message: "Password does not match" });
 
-    const token = jwt.sign({ id, name, userEmail }, "secret-key");
+    const token = jwt.sign({ id, name, userEmail }, "secret-key", {
+      expiresIn: 3600,
+    });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "successfully logged in",
       token,
     });
-    
   } catch (error) {
     console.error("Error during LogIn:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

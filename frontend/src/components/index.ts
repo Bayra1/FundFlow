@@ -11,3 +11,5 @@ export * from "./SecondStep";
 export * from "./ThirdStep";
 export * from "./LineThree";
 export * from "./WarningModel";
+export * from "./InfoContext";
+export * from "./Select";

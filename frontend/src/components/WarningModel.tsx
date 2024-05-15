@@ -1,16 +1,22 @@
 import "./styles/submitButton.css";
 
-const WarningModal: React.FC = () => {
+type propsType = {
+  name: string;
+  path: string;
+  instruction: string;
+};
+
+const WarningModal = ({ name, path, instruction }: propsType) => {
   return (
     <div style={modalOverlayStyle}>
       <div style={modalContentStyle}>
         <h2 className="text-2xl text-red-800">Warning</h2>
-        <p>You have not logged in yet</p>
+        <p>{name}</p>
         <button
           className="w-[384px] h-[48px] bg-[#0166FF] text-white rounded-2xl"
           id="login-button"
         >
-          <a href="/Login">Back To Login</a>
+          <a href={path}>{instruction}</a>
         </button>
       </div>
     </div>
