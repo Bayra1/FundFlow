@@ -16,6 +16,9 @@ export const Create_Info_Func = async (
       readiness,
       userId,
     });
+    
+    const InfoToken = response.data.token;
+    localStorage.setItem("InfoToken", InfoToken);
 
     if (response.status === 201) {
       return toast.success(response.data.message, {

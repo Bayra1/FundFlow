@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { InfoModel } from "../model";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 const createInfo = async (req: Request, res: Response) => {
   try {
@@ -28,11 +29,15 @@ const createInfo = async (req: Request, res: Response) => {
     });
 
     await newInfo.save();
+    const InfoToken = jwt.sign({ newInfo }, "secret-key", {
+      expiresIn: 3600,
+    });
 
     return res.status(201).json({
       success: true,
       message: "Set up is successfully made",
       data: newInfo,
+      InfoToken,
     });
   } catch (error) {
     console.error("Error during Creating info:", error);
@@ -57,5 +62,7 @@ const getAllInfo = async (req: Request, res: Response) => {
     });
   }
 };
+
+const getInfoBasedOnUserId = async (req: Request, res: Response) => {};
 
 export { createInfo, getAllInfo };

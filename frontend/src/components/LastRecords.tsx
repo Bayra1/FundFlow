@@ -13,7 +13,7 @@ export const LastRecords = () => {
         }}
       >
         <span className="text-base leading-6 font-semibold text-black">
-          Last Record
+          Last Records
         </span>
       </div>
       <div className="w-full" style={{ padding: "0px 24px 0px 24px" }}>

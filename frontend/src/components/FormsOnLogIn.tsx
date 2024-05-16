@@ -6,8 +6,21 @@ import { useFormik } from "formik";
 import { LoginValidation } from "./validation";
 import { Log_In_Function } from "./function";
 import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const FormsOnLogin = () => {
+  const storedToken = localStorage.getItem("token");
+  const [currentToken, setCurrentToken] = useState(storedToken);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (currentToken) {
+      localStorage.setItem("token", currentToken);
+    }
+  }, [currentToken]);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -15,9 +28,20 @@ export const FormsOnLogin = () => {
     },
     validationSchema: LoginValidation,
     onSubmit: async (values) => {
-      Log_In_Function(values.email, values.password);
+      try {
+        const token = await Log_In_Function(values.email, values.password);
+        if (token) {
+          setCurrentToken(token);
+          setTimeout(() => {
+            router.push("/Dashboard");
+          }, 2000);
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
     },
   });
+
   return (
     <section className="w-1/2 bg-[#FFF]">
       <div className="w-[384px] h-[426px] absolute top-[250px] left-[222px] gap-[40px]">
