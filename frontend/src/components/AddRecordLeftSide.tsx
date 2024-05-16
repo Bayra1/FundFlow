@@ -1,6 +1,13 @@
+import { useState } from "react";
+import { AmountAddRecord, CategoryAddRecord } from "./index";
+import ReactDatePicker from "react-datepicker";
 import { ArrowDown } from "./icons";
+import { format } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const AddRecordLeftSide = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(new Date())
   return (
     <section
       style={{ padding: "20px 24px 24px 24px" }}
@@ -15,75 +22,40 @@ export const AddRecordLeftSide = () => {
 
       <div className="w-full h-[340px] flex flex-col gap-[32px]">
         <div className="w-full h-[268px] flex flex-col gap-8">
-          <div className="flex flex-col w-full h-[76px] gap-1">
-            <span className="text-base font-normal text-[#171717]">Amount</span>
-            <input
-              type="text"
-              placeholder="$ 000.0"
-              style={{
-                backgroundColor: "#F3F4F6",
-                height: "100%",
-                padding: "10px",
-                borderRadius: "16px",
-                color: "black",
-                border: "1px solid #D1D5DB",
-              }}
-              name=""
-              id=""
-            />
-          </div>
-
-          <div className="flex flex-col w-full h-[76px] gap-1">
-            <span className="text-base font-normal text-[#171717]">
-              Category
-            </span>
-            <details className="dropdown">
-              <summary
-                style={{ borderColor: "#D1D5D8" }}
-                className="m-1 btn bg-[#F9FAFB] hover:bg-white flex justify-between w-full h-[48px]"
-              >
-                <span className="leading-6 font-semibold text-base text-[#94A3B8]">
-                  Choose
-                </span>
-                <ArrowDown />
-              </summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] rounded-box w-52 bg-white">
-                <li>
-                  <a className="leading-6 font-semibold text-base text-[#1F2937]">
-                    Newest First
-                  </a>
-                </li>
-                <li>
-                  <a className="leading-6 font-semibold text-base text-[#1F2937]">
-                    Newest First
-                  </a>
-                </li>
-              </ul>
-            </details>
-          </div>
-
+          <AmountAddRecord />
+          <CategoryAddRecord />
           <div className="flex flex-row w-full h-[76px] gap-3">
             <div className="flex flex-col gap-1">
               <span className="text-base font-normal text-[#171717]">Date</span>
-              <input
-                type="text"
-                style={{
-                  width: "168px",
-                  height: "48px",
-                  backgroundColor: "F9FAFB",
-                }}
-              />
+              <div className="flex flex-row relative">
+                <ReactDatePicker
+                  className="bg-[#F9FAFB] w-[168px] h-[48px] p-2 text-black border border-[#D1D5DB] rounded"
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date!)}
+                  dateFormat="MMM dd, YYYY"
+                />
+                <div className="absolute left-[150px] top-5">
+                  <ArrowDown />
+                </div>
+              </div>             
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-base font-normal text-[#171717]">Date</span>
-              <input
-                type="text"
-                style={{
-                  width: "168px",
-                  height: "48px",
-                  backgroundColor: "F9FAFB",
-                }}
-              />
+              <span className="text-base font-normal text-[#171717]">Time</span>
+              <div className="flex flex-row relative">
+                <ReactDatePicker
+                  className="bg-[#F9FAFB] w-[168px] h-[48px] p-2 text-black border border-[#D1D5DB] rounded"
+                  selected={selectedTime}
+                  onChange={(date) => setSelectedTime(date!)}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                />
+                <div className="absolute left-[150px] top-5">
+                  <ArrowDown />
+                </div>
+              </div>
             </div>
           </div>
         </div>

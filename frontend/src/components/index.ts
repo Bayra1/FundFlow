@@ -46,3 +46,5 @@ export * from "./AddRecordModel";
 export * from "./CloseModel";
 export * from "./AddRecordLeftSide";
 export * from "./AddRecordRightSide";
+export * from "./AmountAddRecord";
+export * from "./CategoryAddRecord";

@@ -21,8 +21,8 @@ export const Records = () => {
         <AsideRecords ToggleModel={ToggleModel} />
         <RecordContent />
       </div>
-      {model && <AddRecordModel ToggleModel={ToggleModel}/>}
-      {/* <AddRecordModel ToggleModel={ToggleModel}/> */}
+      {/* {model && <AddRecordModel ToggleModel={ToggleModel}/>} */}
+      <AddRecordModel ToggleModel={ToggleModel}/>
     </div>
   );
 };
