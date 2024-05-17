@@ -48,3 +48,5 @@ export * from "./AddRecordLeftSide";
 export * from "./AddRecordRightSide";
 export * from "./AmountAddRecord";
 export * from "./CategoryAddRecord";
+export * from "./Date&Time";
+export * from "./AddCategoryModel";

@@ -9,9 +9,10 @@ import {
 
 type propsType = {
   ToggleModel: () => void;
+  handleCategoryModel: () => void;
 };
 
-export const AsideRecords = ({ ToggleModel }: propsType) => {
+export const AsideRecords = ({ ToggleModel, handleCategoryModel }: propsType) => {
   return (
     <main
       className="w-[282px] h-fit bg-[#F9FAFB] flex flex-col gap-[24px]"
@@ -27,7 +28,7 @@ export const AsideRecords = ({ ToggleModel }: propsType) => {
       <SearchInput />
       <Types />
       <Category />
-      <AddCategoryButton />
+      <AddCategoryButton handleCategoryModel={handleCategoryModel} />
       <AmountRange />
     </main>
   );

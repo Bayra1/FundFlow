@@ -2,9 +2,10 @@ import { XiCon } from "./icons";
 
 type propsType = {
   ToggleModel: () => void;
+  name: string;
 };
 
-export const CloseModel = ({ ToggleModel }: propsType) => {
+export const CloseModel = ({ ToggleModel, name }: propsType) => {
   return (
     <div
       className="w-full h-[56px] justify-between flex flex-row gap-[8px] items-center"
@@ -16,7 +17,7 @@ export const CloseModel = ({ ToggleModel }: propsType) => {
       }}
     >
       <span className="text-black font-semibold text-base leading-6">
-        Add Record
+        {name}
       </span>
       <button onClick={ToggleModel}>
         <XiCon />

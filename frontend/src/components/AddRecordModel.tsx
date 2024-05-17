@@ -15,7 +15,7 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
         className="w-[792px] h-[512px] flex flex-col bg-white rounded-xl shadow-lg"
         style={{ border: "1px solid #ccc" }}
       >
-        <CloseModel ToggleModel={ToggleModel} />
+        <CloseModel name="Add Records" ToggleModel={ToggleModel} />
         <main className="w-full h-full flex flex-row">
           <AddRecordLeftSide />
           <AddRecordRightSide />

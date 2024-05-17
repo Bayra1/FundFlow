@@ -23,3 +23,4 @@ export * from "./LeftSideArrow";
 export * from "./RightSideArrow";
 export * from "./ArrowDown";
 export * from "./XiCon";
+export * from "./BlackHouse";
