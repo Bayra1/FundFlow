@@ -1,6 +1,8 @@
+
 export const FirstRow = [
   {
     name: "whiteHouse",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -18,6 +20,7 @@ export const FirstRow = [
   },
   {
     name: "HouseLine",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -35,6 +38,7 @@ export const FirstRow = [
   },
   {
     name: "IdentificationBadge",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -52,6 +56,7 @@ export const FirstRow = [
   },
   {
     name: "IdentificationCard",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -69,6 +74,7 @@ export const FirstRow = [
   },
   {
     name: "Ladder",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -86,6 +92,7 @@ export const FirstRow = [
   },
   {
     name: "IntersectSquare",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -103,6 +110,7 @@ export const FirstRow = [
   },
   {
     name: "imageSquare",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -120,6 +128,7 @@ export const FirstRow = [
   },
   {
     name: "MagnifyingGlassPlus",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -137,6 +146,7 @@ export const FirstRow = [
   },
   {
     name: "Microphone",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -154,6 +164,7 @@ export const FirstRow = [
   },
   {
     name: "MicrosoftExcelLogo",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -171,6 +182,7 @@ export const FirstRow = [
   },
   {
     name: "NotePad",
+    color:"#343330",
     icon: (
       <svg
         width="18"
@@ -188,6 +200,7 @@ export const FirstRow = [
   },
   {
     name: "ListPlus",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -205,6 +218,7 @@ export const FirstRow = [
   },
   {
     name: "Leaf",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -222,6 +236,7 @@ export const FirstRow = [
   },
   {
     name: "NumberFive",
+    color:"#343330",
     icon: (
       <svg
         width="18"
@@ -239,6 +254,7 @@ export const FirstRow = [
   },
   {
     name: "NumberSevenCircle",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -256,6 +272,7 @@ export const FirstRow = [
   },
   {
     name: "RoadHorizon",
+    color:"#343330",
     icon: (
       <svg
         width="22"
@@ -273,6 +290,7 @@ export const FirstRow = [
   },
   {
     name: "HourGlassSimpleMedium",
+    color:"#343330",
     icon: (
       <svg
         width="18"
@@ -290,6 +308,7 @@ export const FirstRow = [
   },
   {
     name: "AnchorSimple",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -307,6 +326,7 @@ export const FirstRow = [
   },
   {
     name: "BazierCurve",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -324,6 +344,7 @@ export const FirstRow = [
   },
   {
     name: "Exclude",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -341,6 +362,7 @@ export const FirstRow = [
   },
   {
     name: "Vignette",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -358,6 +380,7 @@ export const FirstRow = [
   },
   {
     name: "BaseBall",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -375,6 +398,7 @@ export const FirstRow = [
   },
   {
     name: "Question",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -392,6 +416,7 @@ export const FirstRow = [
   },
   {
     name: "Exam",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -409,6 +434,7 @@ export const FirstRow = [
   },
   {
     name: "Watch",
+    color:"#343330",
     icon: (
       <svg
         width="16"
@@ -426,6 +452,7 @@ export const FirstRow = [
   },
   {
     name: "GlobeSimple",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -443,6 +470,7 @@ export const FirstRow = [
   },
   {
     name: "OrangeSlice",
+    color:"#343330",
     icon: (
       <svg
         width="24"
@@ -460,6 +488,7 @@ export const FirstRow = [
   },
   {
     name: "Peace",
+    color:"#343330",
     icon: (
       <svg
         width="20"
@@ -477,6 +506,7 @@ export const FirstRow = [
   },
   {
     name: "ToiletPaper",
+    color:"#343330",
     icon: (
       <svg
         width="22"
@@ -494,6 +524,7 @@ export const FirstRow = [
   },
   {
     name: "Pencil",
+    color:"#343330",
     icon: (
       <svg
         width="19"

@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { CloseModel } from "./CloseModel";
 import { ArrowDown, BlackHouse } from "./icons";
-import { Colors, FirstRow } from "./utils/Categories";
+import { Colors, FirstRow, OptionForCategory } from "./utils/Categories";
 
 type propsType = {
   handleCategoryModel: () => void;
 };
 
 export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
-  const [selectedIcon, setSelectedIcon] = useState(<BlackHouse />);
+  const [selectedIconIndex, setSelectedIconIndex] = useState<number | undefined>(0);
   const [selectedColor, setSelectedColor] = useState("#343330");
+
+  const handleColor = (color: string) => {
+    setSelectedColor(color);
+  };
+  console.log(selectedColor, "s");
+
   return (
     <div
       className="w-full absolute top-0 h-full flex justify-center items-center"
@@ -22,31 +28,7 @@ export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
         <CloseModel name="Add Category" ToggleModel={handleCategoryModel} />
         <div className="flex flex-col gap-5 w-full justify-between p-[24px] items-center">
           <div className="flex flex-row items-center w-full">
-            <details className="dropdown">
-              <summary
-                style={{ borderColor: "#D1D5D8" }}
-                className="m-1 btn bg-[#F9FAFB] hover:bg-white flex justify-between w-[84px] border h-[48px]"
-              >
-                {selectedIcon}
-                <ArrowDown />
-              </summary>
-              <ul className="rounded-lg p-0 flex-row w-[300px] h-fit flex shadow menu dropdown-content z-[1] bg-white">
-                {FirstRow.map((el, index) => (
-                  <li
-                    className="w-[50px] h-[50px]"
-                    key={index}
-                    onClick={() => setSelectedIcon(el.icon)}
-                  >
-                    <a>{el.icon}</a>
-                  </li>
-                ))}
-                <ul className="flex flex-row justify-between ml-4">
-                  {Colors.map((el, index) =>{
-                    return <li className="w-[50px] h-[50px]" key={index}>{el}</li>
-                  })}
-                </ul>
-              </ul>
-            </details>
+            <OptionForCategory/>
             <input
               type="text"
               placeholder="name"

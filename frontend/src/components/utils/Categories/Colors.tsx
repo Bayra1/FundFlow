@@ -1,11 +1,9 @@
 export const Colors = [
-  <svg
-    width="264"
-    height="24"
-    viewBox="0 0 264 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="12" cy="12" r="12" fill="#0166FF" />
-  </svg>,
+  "#0166FF",
+  "#01B3FF",
+  "#41CC00",
+  "#F9D100",
+  "#FF7B01",
+  "#AE01FF",
+  "#FF0101",
 ];

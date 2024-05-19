@@ -30,8 +30,8 @@ export const Records = () => {
         <RecordContent />
       </div>
       {model && <AddRecordModel ToggleModel={ToggleModel}/>}
-      {/* {categoryModel && <AddCategoryModel handleCategoryModel={handleCategoryModel}/>} */}
-      <AddCategoryModel handleCategoryModel={handleCategoryModel}/>
+      {categoryModel && <AddCategoryModel handleCategoryModel={handleCategoryModel}/>}
+      {/* <AddCategoryModel handleCategoryModel={handleCategoryModel}/> */}
       {/* <AddRecordModel ToggleModel={ToggleModel}/> */}
     </div>
   );

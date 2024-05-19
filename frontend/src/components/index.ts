@@ -50,3 +50,4 @@ export * from "./AmountAddRecord";
 export * from "./CategoryAddRecord";
 export * from "./Date&Time";
 export * from "./AddCategoryModel";
+export * from "./SelectedIcon"
