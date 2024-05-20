@@ -1,20 +1,28 @@
-import { useState } from "react";
+"use client";
+import { useRef, useState } from "react";
 import { CloseModel } from "./CloseModel";
-import { ArrowDown, BlackHouse } from "./icons";
-import { Colors, FirstRow, OptionForCategory } from "./utils/Categories";
+import { OptionForCategory } from "./utils/Categories";
+import { Create_Category_Func, Create_Info_Func } from "./function";
+import { Toaster } from "react-hot-toast";
 
 type propsType = {
   handleCategoryModel: () => void;
 };
 
 export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
-  const [selectedIconIndex, setSelectedIconIndex] = useState<number | undefined>(0);
+  const [selectedIconIndex, setSelectedIconIndex] = useState<
+    number | undefined
+  >(0);
   const [selectedColor, setSelectedColor] = useState("#343330");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleColor = (color: string) => {
-    setSelectedColor(color);
+  const handleSubmit = () => {
+    Create_Category_Func(
+      selectedColor,
+      selectedIconIndex,
+      inputRef.current?.value
+    );
   };
-  console.log(selectedColor, "s");
 
   return (
     <div
@@ -28,8 +36,14 @@ export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
         <CloseModel name="Add Category" ToggleModel={handleCategoryModel} />
         <div className="flex flex-col gap-5 w-full justify-between p-[24px] items-center">
           <div className="flex flex-row items-center w-full">
-            <OptionForCategory/>
+            <OptionForCategory
+              selectedIconIndex={selectedIconIndex}
+              setSelectedIconIndex={setSelectedIconIndex}
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+            />
             <input
+              ref={inputRef}
               type="text"
               placeholder="name"
               style={{
@@ -41,11 +55,15 @@ export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
                 border: "1px solid #D1D5DB",
                 width: "350px",
               }}
-              name=""
-              id=""
+              name="name"
+              id="name"
             />
           </div>
           <button
+            onClick={() => {
+              handleCategoryModel();
+              handleSubmit();
+            }}
             className="w-full h-[40px] bg-[#16A34A] flex justify-center items-center gap-1 text-white"
             style={{ borderRadius: "20px" }}
           >
@@ -53,6 +71,7 @@ export const AddCategoryModel = ({ handleCategoryModel }: propsType) => {
           </button>
         </div>
       </section>
+      <Toaster position="top-center"/>
     </div>
   );
 };

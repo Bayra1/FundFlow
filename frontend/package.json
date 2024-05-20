@@ -20,6 +20,7 @@
     "react-datepicker": "^6.9.0",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "swr": "^2.2.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

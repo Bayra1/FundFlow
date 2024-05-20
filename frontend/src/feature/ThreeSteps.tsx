@@ -1,11 +1,9 @@
 "use client";
 import { FirstStep, SecondStep, ThirdStep } from "@/components";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const ThreeSteps = () => {
   const [currenStep, setCurrenStep] = useState(1);
-  const router = useRouter();
 
   const GoToNextStep = () => {
     setCurrenStep(currenStep + 1);
@@ -28,5 +26,4 @@ export const ThreeSteps = () => {
   };
 
   return <div className="w-full h-screen bg-white">{renderStep()}</div>;
-  // return <div className="w-full h-screen bg-white"><ThirdStep/></div>
 };

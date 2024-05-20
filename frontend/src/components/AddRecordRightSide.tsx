@@ -14,7 +14,7 @@ export const AddRecordRightSide = () => {
             className="m-1 btn bg-[#F9FAFB] hover:bg-white flex justify-between w-full h-[48px]"
           >
             <span className="leading-6 font-semibold text-base text-[#94A3B8]">
-              Choose
+              Write here
             </span>
             <ArrowDown />
           </summary>

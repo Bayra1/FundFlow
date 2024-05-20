@@ -7,6 +7,7 @@ import {
   RecordContent,
 } from "@/components";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export const Records = () => {
   const [model, setModel] = useState(false);
@@ -20,8 +21,6 @@ export const Records = () => {
     setCategoryModel((preV) => !preV)
   }
 
-
-
   return (
     <div className="w-full h-fit flex bg-[#F3F4F6] flex-col items-center">
       <NavBar />
@@ -33,6 +32,7 @@ export const Records = () => {
       {categoryModel && <AddCategoryModel handleCategoryModel={handleCategoryModel}/>}
       {/* <AddCategoryModel handleCategoryModel={handleCategoryModel}/> */}
       {/* <AddRecordModel ToggleModel={ToggleModel}/> */}
+      <Toaster position="top-center"/>
     </div>
   );
 };
