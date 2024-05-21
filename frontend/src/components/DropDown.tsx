@@ -20,7 +20,7 @@ export const DropDownRecord = () => {
         </li>
         <li>
           <a className="leading-6 font-semibold text-base text-[#1F2937]">
-            Newest First
+            Oldest First
           </a>
         </li>
       </ul>

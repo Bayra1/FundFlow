@@ -1,7 +1,7 @@
 import { GuideButton } from "./GuideButton";
 import { CubeIcon, Plus } from "./icons";
 
-export const NavBar = () => {
+export const NavBar = ({ ToggleModel }: { ToggleModel: () => void }) => {
   return (
     <main
       style={{ padding: "16px 120px 16px 120px" }}
@@ -14,7 +14,10 @@ export const NavBar = () => {
       </section>
 
       <section className="flex flex-row gap-2 items-center">
-        <button className="flex flex-row gap-2 items-center bg-[#0166FF] p-[15px] rounded-2xl">
+        <button
+          onClick={()=> ToggleModel()}
+          className="flex flex-row gap-2 items-center bg-[#0166FF] p-[15px] rounded-2xl"
+        >
           <Plus />
           <span className="text-white font-semibold text-base">Record</span>
         </button>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AddIcon, ArrowDown } from "./icons";
 import useSWR from "swr";
 import { SelectedIconComp } from "./SelectedIcon";
+import { fetchAllCategories } from "./function";
 
 type Category = {
   name: string;
@@ -10,24 +11,12 @@ type Category = {
   _id: string;
 };
 
-const fetchCategories = async () => {
-  const response = await fetch(
-    "http://localhost:8000/category/getAllCategories"
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch categories");
-  }
-  const data = await response.json();
-  return data.data;
-};
-
 export const CategoryAddRecord = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );
-  const { data, error } = useSWR("categories", fetchCategories);
+  const { data, error } = useSWR("categories", fetchAllCategories);
 
   useEffect(() => {
     if (data) {
@@ -69,7 +58,7 @@ export const CategoryAddRecord = () => {
             <li style={{ borderBottom: "1px solid #E5E5E5", padding: "10px" }}>
               <a className="leading-6 font-semibold text-base text-[#1F2937]">
                 <AddIcon />
-                Add Category
+                Add Category aaa
               </a>
             </li>
             {categories.map((category, index) => (

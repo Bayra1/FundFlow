@@ -17,31 +17,33 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [payBy, setPayBy] = useState("By Cash");
-  const descriptionRef = useRef<HTMLTextAreaElement>(null)
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = () => {
-    const categoryId = localStorage.getItem('categoryId')
-    const date = format(startDate, "MMM dd, YYYY")
-    const time = format(selectedTime, "h:mm aa")
+    const categoryId = localStorage.getItem("categoryId");
+    const date = format(startDate, "MMM dd, yyyy");
+    const time = format(selectedTime, "h:mm aa");
+
     try {
       Transaction_Function(
         inputRef.current?.value!,
         categoryId!,
-        date as any,
-        time as any,
+        date,
+        time,
         payBy,
         descriptionRef.current?.value!,
         income
       );
-      // Clear form fields after successful submission
       inputRef.current && (inputRef.current.value = "");
       descriptionRef.current && (descriptionRef.current.value = "");
+      setTimeout(() => {
+        ToggleModel();
+      }, 1000)
     } catch (error) {
       console.error("Error submitting transaction:", error);
-      // Handle error (e.g., show error message to the user)
+      throw new Error("error occured during creation of transaction");
     }
-    
-  }
+  };
 
   return (
     <main
@@ -65,10 +67,10 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
               selectedTime,
               setSelectedTime,
               inputRef,
-              handleSubmit
+              handleSubmit,
             }}
           />
-          <AddRecordRightSide {...{payBy, setPayBy, descriptionRef}}/>
+          <AddRecordRightSide {...{ payBy, setPayBy, descriptionRef }} />
         </main>
       </section>
     </main>

@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const TransactionSchema = new mongoose.Schema({
   amount: String,
-  
+
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
   },
 
-  date: { type: Date, default: Date.now },
-  time: { type: Date, default: Date.now },
+  date: String,
+  time: String,
 
   paymentBy: {
     type: String,

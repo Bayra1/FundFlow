@@ -6,9 +6,10 @@ import {
   YesterDayNotes,
 } from "./index";
 
+
 export const RecordContent = () => {
   return (
-    <main className="w-[894px] h-fit">
+    <main className="w-[894px] h-fit pb-4">
       <section className="flex justify-between flex-row w-full h-fit items-center">
         <ControlDateButton />
         <DropDownRecord />

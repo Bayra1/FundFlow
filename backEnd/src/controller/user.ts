@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { userModel } from "../model/user";
+import { Request, Response } from "express";
+import { InfoModel, TransactionModel } from "../model";
 
 const SignUp = async (req: any, res: any) => {
   try {
@@ -89,4 +91,39 @@ const LogIn = async (req: any, res: any) => {
   }
 };
 
-export { SignUp, getAllUsers, LogIn };
+const getUserWithInfo = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.body;
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const info = await InfoModel.findOne({ userId });
+    const transactions = await TransactionModel.find({ userId }).populate(
+      "categoryId"
+    );
+
+    const userWithInfo = {
+      user,
+      info,
+      transactions,
+    };
+
+    return res.status(200).json({
+      success: true,
+      message: "User with whole info",
+      data: userWithInfo,
+    });
+    
+  } catch (error) {
+    console.error("Error during getting userWithInfo:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+export { SignUp, getAllUsers, LogIn, getUserWithInfo };

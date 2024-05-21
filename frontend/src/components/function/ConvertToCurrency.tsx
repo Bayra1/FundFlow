@@ -1,11 +1,18 @@
-export const ConvertToCurrency = () => {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+export const ConvertToCurrency = (quantity:number) => {
 
-  let MNTugrik = new Intl.NumberFormat("mn-MN", {
-    style: "currency",
-    currency: "MNT",
-  });
+
+  var token = localStorage.getItem("token");
+  let formattedAmount = "";
+
+  // if (currency === "Dollar $") {
+  //   formattedAmount = Number(quantity).toLocaleString("en-US", {
+  //     style: "currency",
+  //     currency: "USD",
+  //   });
+  // } else if (currency === "Tugrik ₮") {
+  //   formattedAmount = Number(quantity).toLocaleString("mn-MN", {
+  //     style: "currency",
+  //     currency: "MNT",
+  //   });
+  // }
 };
