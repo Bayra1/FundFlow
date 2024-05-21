@@ -7,12 +7,14 @@ type Category = {
   name: string;
   selectedIconIndex: number | undefined;
   selectedColor: string;
+  _id: string;
 };
 
 const fetchCategories = async () => {
   const response = await fetch(
     "http://localhost:8000/category/getAllCategories"
   );
+
   if (!response.ok) {
     throw new Error("Failed to fetch categories");
   }
@@ -35,6 +37,7 @@ export const CategoryAddRecord = () => {
 
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category);
+    localStorage.setItem("categoryId", category?._id!);
   };
 
   if (error) return <div>Error loading categories</div>;
@@ -57,7 +60,7 @@ export const CategoryAddRecord = () => {
               {selectedCategory.name}
             </div>
           ) : (
-            <span>Find or choose Category</span>
+            <span>Choose</span>
           )}
           <ArrowDown />
         </summary>
@@ -73,7 +76,9 @@ export const CategoryAddRecord = () => {
               <li key={index} className="p-[10px]">
                 <a
                   className="text-black flex flex-row gap-3"
-                  onClick={() => handleCategorySelect(category)}
+                  onClick={() => {
+                    handleCategorySelect(category);
+                  }}
                 >
                   <SelectedIconComp
                     propIndex={category.selectedIconIndex ?? 0}

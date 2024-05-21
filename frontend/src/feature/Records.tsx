@@ -6,6 +6,7 @@ import {
   NavBar,
   RecordContent,
 } from "@/components";
+import { fetchAllCategories } from "@/components/function";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 
@@ -21,6 +22,15 @@ export const Records = () => {
     setCategoryModel((preV) => !preV)
   }
 
+  (async () => {
+    try {
+      const categories = await fetchAllCategories();
+      console.log(categories);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+  
   return (
     <div className="w-full h-fit flex bg-[#F3F4F6] flex-col items-center">
       <NavBar />
@@ -31,7 +41,7 @@ export const Records = () => {
       {model && <AddRecordModel ToggleModel={ToggleModel}/>}
       {categoryModel && <AddCategoryModel handleCategoryModel={handleCategoryModel}/>}
       {/* <AddCategoryModel handleCategoryModel={handleCategoryModel}/> */}
-      {/* <AddRecordModel ToggleModel={ToggleModel}/> */}
+      <AddRecordModel ToggleModel={ToggleModel}/>
       <Toaster position="top-center"/>
     </div>
   );

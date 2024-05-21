@@ -1,8 +1,15 @@
-export const AmountAddRecord = () => {
+import React from "react";
+
+type InputRefType = {
+  inputRef: React.RefObject<HTMLInputElement>;
+};
+
+export const AmountAddRecord = ({ inputRef }: InputRefType) => {
   return (
     <div className="flex flex-col w-full h-[76px] gap-1">
       <span className="text-base font-normal text-[#171717]">Amount</span>
       <input
+        ref={inputRef}
         type="text"
         placeholder="$ 000.0"
         style={{

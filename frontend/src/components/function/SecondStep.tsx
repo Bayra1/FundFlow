@@ -1,6 +1,4 @@
 export const SecondStep_Func = (quantity: any) => {
-  console.log(quantity, "this is", typeof quantity);
-
   var currency = localStorage.getItem("currency");
   let formattedAmount = "";
 

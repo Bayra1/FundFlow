@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const backEnd = "http://localhost:8000/createInformation/createInfo";
+const backEnd = "http://localhost:8000/info/createInfo";
 
 export const Create_Info_Func = async (
   currency: string,
@@ -16,12 +16,12 @@ export const Create_Info_Func = async (
       readiness,
       userId,
     });
-    
+
     const InfoToken = response.data.token;
     localStorage.setItem("InfoToken", InfoToken);
 
     if (response.status === 201) {
-      return toast.success(response.data.message, {
+      toast.success(response.data.message, {
         position: "top-center",
         style: {
           opacity: 1,
@@ -30,20 +30,30 @@ export const Create_Info_Func = async (
         icon: "🐦‍🔥",
         duration: 5000,
       });
+
+      return InfoToken;
     } else {
-      return toast.error("Failed to register");
+      toast.error("Failed to register");
+      return null;
     }
   } catch (error: any) {
     if (error.response) {
       const responseData = error.response.data;
       if (responseData.status === 400) {
-        return toast(responseData.message, {
+        toast(responseData.message, {
           icon: "🧟‍♀️",
         });
+        return null;
+      } else if (responseData.status === 400) {
+        toast(responseData.message, {
+          icon: "🧟‍♀️",
+        });
+        return null;
       }
     } else {
       console.log("Error:", error.message);
-      return toast.error("An unexpected error occurred");
+      toast.error("An unexpected error occurred");
+      return null;
     }
   }
 };

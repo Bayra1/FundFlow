@@ -39,7 +39,9 @@ export const ThirdStep = () => {
     localStorage.removeItem("currency");
     localStorage.removeItem("budget");
 
-    router.push("/Dashboard");
+    setTimeout(() => {
+      router.push("/Dashboard");
+    }, 2000);
   };
 
   return (

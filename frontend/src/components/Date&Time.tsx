@@ -1,12 +1,17 @@
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
-import { ArrowDown } from "./icons";
-import { format } from "date-fns";
+import { ArrowDown } from "./icons";;
 import "react-datepicker/dist/react-datepicker.css";
 
-export const Date_Time = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(new Date());
+type DatesType = {
+  startDate:Date
+  selectedTime:Date
+  setStartDate:(date:Date)=>void
+  setSelectedTime:(date:Date)=>void
+}
+
+
+export const Date_Time = ({startDate, setStartDate, selectedTime, setSelectedTime}:DatesType) => {  
   return (
     <div className="flex flex-row w-full h-[76px] gap-3">
       <div className="flex flex-col gap-1">

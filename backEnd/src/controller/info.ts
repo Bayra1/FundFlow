@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { InfoModel } from "../model";
 import mongoose from "mongoose";
+import { InfoModel } from "../model";
 import jwt from "jsonwebtoken";
 
 const createInfo = async (req: Request, res: Response) => {
@@ -21,6 +21,14 @@ const createInfo = async (req: Request, res: Response) => {
       });
     }
 
+    const existingInfo = await InfoModel.findById({ userId });
+    if (!existingInfo) {
+      return res.status(409).json({
+        success: false,
+        message: "user already has existing information",
+      });
+    }
+
     const newInfo = new InfoModel({
       currency,
       budget,
@@ -37,7 +45,7 @@ const createInfo = async (req: Request, res: Response) => {
       success: true,
       message: "Set up is successfully made",
       data: newInfo,
-      InfoToken,
+      token: InfoToken,
     });
   } catch (error) {
     console.error("Error during Creating info:", error);
@@ -45,7 +53,7 @@ const createInfo = async (req: Request, res: Response) => {
   }
 };
 
-const getAllInfo = async (req: Request, res: Response) => {
+const getAllInfo = async (_: Request, res: Response) => {
   try {
     const getWholeInfo = await InfoModel.find().populate("userId");
 
