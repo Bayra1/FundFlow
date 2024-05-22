@@ -93,7 +93,7 @@ const LogIn = async (req: any, res: any) => {
 
 const getUserWithInfo = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.body;
+    const { userId } = req.params;    
     const user = await userModel.findById(userId);
 
     if (!user) {

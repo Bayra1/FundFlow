@@ -1,6 +1,6 @@
 import { GreenDotSVG, UpArrowIcon } from "./icons";
 
-export const SecondCard = () => {
+export const SecondCard = ({ income }: { income: string }) => {
   return (
     <section
       className="w-[384px] h-[219px] bg-white relative"
@@ -26,7 +26,7 @@ export const SecondCard = () => {
       >
         <div className="w-full h-[72px] flex flex-col gap-1">
           <span className="text-3xl text-black font-semibold leading-10">
-            1'200'000 $
+            {income}
           </span>
           <span className="text-lg font-normal leading-7 text-[#64748B]">
             Your Income Amount

@@ -8,4 +8,5 @@ export * from "./ConvertToCurrency";
 export * from "./Transaction";
 export * from "./FetchAllCategories";
 export * from "./FetchTodayTransactions";
-export * from "./FetchYesterdayTrans"
+export * from "./FetchYesterdayTrans";
+export * from "./GetUserWithInfo";

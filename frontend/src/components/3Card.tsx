@@ -1,6 +1,11 @@
-import { DownArrow, GreenDotSVG, RedDot } from "./icons";
+import { DownArrow, RedDot } from "./icons";
 
-export const ThirdCard = () => {
+type PropsType = {
+  expense: number;
+  currency: string;
+};
+
+export const ThirdCard = ({ expense, currency }: PropsType) => {
   return (
     <section
       className="w-[384px] h-[219px] bg-white relative"
@@ -26,7 +31,7 @@ export const ThirdCard = () => {
       >
         <div className="w-full h-[72px] flex flex-col gap-1">
           <span className="text-3xl text-black font-semibold leading-10">
-            - 1'200'000 $
+            - {expense} {currency === "Dollar $" ? "$" : "₮"}
           </span>
           <span className="text-lg font-normal leading-7 text-[#64748B]">
             Your Expenses Amount

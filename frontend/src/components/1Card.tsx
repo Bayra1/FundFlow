@@ -1,11 +1,6 @@
-import {
-  CircleIcon,  
-  NoiseBackIcon,
-  WavesIcon,
-  WhiteCubeIcon,
-} from "./icons";
+import { CircleIcon, NoiseBackIcon, WavesIcon, WhiteCubeIcon } from "./icons";
 
-export const FirstCard = () => {
+export const FirstCard = ({ currency }: { currency: string }) => {
   return (
     <section
       className="w-[384px] h-[219px] bg-[#0166FF] pt-[32px] pl-[32px] relative"
@@ -22,7 +17,7 @@ export const FirstCard = () => {
       <div className="w-[108px] h-[56px] absolute top-[128px] flex flex-col gap-1">
         <span className="font-normal text-base">Currency</span>
         <span className="font-semibold text-2xl text-white leading-8">
-          Dollar $
+          {currency}
         </span>
       </div>
 

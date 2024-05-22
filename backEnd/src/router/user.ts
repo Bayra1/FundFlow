@@ -11,4 +11,4 @@ export const user = express.Router();
 user.route("/postUser").post(SignUp);
 user.route("/getAllUsers").get(getAllUsers);
 user.route("/logIn").post(LogIn);
-user.route("/userWithInfo").get(getUserWithInfo);
+user.route("/userWithInfo/:userId").get(getUserWithInfo);

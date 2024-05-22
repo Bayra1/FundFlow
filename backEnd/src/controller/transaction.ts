@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { TransactionModel } from "../model/transaction";
-import mongoose from "mongoose";
 import { format } from "date-fns";
+import mongoose from "mongoose";
 
 const CreateTransaction = async (req: Request, res: Response) => {
   try {
