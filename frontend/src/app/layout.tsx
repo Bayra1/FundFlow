@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { InfoContextProvider } from "../components/InfoContext";
+import { TransactionContextProvider } from "@/components/context/allTransactions";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <InfoContextProvider>{children}</InfoContextProvider>
+        <TransactionContextProvider>{children}</TransactionContextProvider>
       </body>
     </html>
   );

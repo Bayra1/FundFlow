@@ -19,13 +19,16 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
   const [payBy, setPayBy] = useState("By Cash");
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const categoryId = localStorage.getItem("categoryId");
     const date = format(startDate, "MMM dd, yyyy");
     const time = format(selectedTime, "h:mm aa");
-
     try {
-      Transaction_Function(
+      const categoryId = localStorage.getItem("categoryId");
+      const date = format(startDate, "MMM dd, yyyy");
+      const time = format(selectedTime, "h:mm aa");
+
+      await Transaction_Function(
         inputRef.current?.value!,
         categoryId!,
         date,
@@ -34,11 +37,6 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
         descriptionRef.current?.value!,
         income
       );
-      inputRef.current && (inputRef.current.value = "");
-      descriptionRef.current && (descriptionRef.current.value = "");
-      setTimeout(() => {
-        ToggleModel();
-      }, 1000)
     } catch (error) {
       console.error("Error submitting transaction:", error);
       throw new Error("error occured during creation of transaction");

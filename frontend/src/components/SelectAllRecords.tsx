@@ -1,65 +1,74 @@
-import { useEffect, useState } from "react";
-import useSWR from "swr";
-import { DeleteTransaction_Func, GetAllTransactions } from "./function";
+import { useContext } from "react";
+import { DeleteTransaction_Func } from "./function";
 import { TransactionType } from "./Interface";
 import { RecordNotes } from "./RecordNotes";
-import { Toaster } from "react-hot-toast";
-import { SelectAllCheckBox } from "./SelectAllCheckBox";
+import toast, { Toaster } from "react-hot-toast";
+import { Sub_Income_Expense } from "./SubIncome&Expense";
+import { TransactionContext } from "./context/allTransactions";
 
 export const SelectAllRecords = () => {
-  const [allTransactions, setAllTransactions] = useState([]);
-  const [isCheckedOneTransaction, setIsCheckedOneTransaction] = useState(false);
-  const { data, error } = useSWR("allTransactionsactions", GetAllTransactions);
+  const transContext = useContext(TransactionContext);
 
-  useEffect(() => {
-    if (data) {
-      setAllTransactions(data);
+  if (!transContext) {
+    throw new Error(
+      "SelectAllRecords must be used within a TransactionContextProvider"
+    );
+  }
+
+  const { allTransactions } = transContext;
+
+  const handleCheckBox = async (id: string) => {
+    try {
+      // await DeleteTransaction_Func(id);
+    } catch (error) {
+      toast.error("Failed to delete transaction");
     }
-  }, [data]);
+    console.log("id:", id);
+  };
 
-  if (error) {
-    console.error("error fetching today transaction", error);
-    return;
-  }
+  const calculateInc_Exp = () => {
+    let income = 0;
+    let expenses = 0;
 
-  if (!data) {
-    return <div>Loading ... 🙅‍♂️</div>;
-  }
+    if (!allTransactions) {
+      toast.error("No data");
+      return { income, expenses };
+    }
+
+    allTransactions.forEach((transaction: TransactionType) => {
+      if (transaction.transaction_type === "EXP") {
+        expenses += Number(transaction.amount);
+      } else if (transaction.transaction_type === "INC") {
+        income += Number(transaction.amount);
+      }
+    });
+
+    return { income, expenses };
+  };
 
   return (
-    <main className="flex flex-col gap-2">
-      <div
-        className="w-full h-[48px] flex justify-between bg-white items-center mt-[20px]"
-        style={{
-          padding: "12px 24px 12px 24px",
-          borderStyle: "solid",
-          borderWidth: "1px",
-          borderColor: "#E2E8F0",
-          borderRadius: "12px",
-        }}
-      >
-        <SelectAllCheckBox />
-        <span className="text-base font-semibold leading-6 text-[#94A3B8]">
-          - 1000
-        </span>
-      </div>
+    <main className="flex flex-col gap-2 mt-[20px]">
+      <Sub_Income_Expense
+        income={calculateInc_Exp().income}
+        expenses={calculateInc_Exp().expenses}
+      />
       <div className="flex flex-col w-full gap-1">
-        {allTransactions &&
-          allTransactions.map((transaction: TransactionType, index: number) => {
-            return (
-              <div key={index}>
-                <RecordNotes
-                  description={transaction.description}
-                  transaction_type={transaction.transaction_type}
-                  IconIndex={transaction.categoryId?.selectedIconIndex}
-                  amount={transaction.amount}
-                  time={transaction.time}
-                  isChecked={isCheckedOneTransaction}
-                  // handleCheckBox={() => DeleteTransaction_Func(transaction._id)}
-                />
-              </div>
-            );
-          })}
+        {allTransactions ? (
+          allTransactions.map((transaction: TransactionType) => (
+            <div key={transaction._id}>
+              <RecordNotes
+                description={transaction.description}
+                transaction_type={transaction.transaction_type}
+                IconIndex={transaction.categoryId?.selectedIconIndex}
+                amount={transaction.amount}
+                time={transaction.time}
+                handleCheckBox={() => handleCheckBox(transaction._id)}
+              />
+            </div>
+          ))
+        ) : (
+          <span className="loading loading-spinner loading-md"></span>
+        )}
       </div>
       <Toaster position="top-center" />
     </main>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RecordNotesNoCheckBox, Title } from "./index";
 import { FetchTodayTransactions } from "./function";
 import { TransactionType } from "./Interface";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 export const TodayNotes = () => {
   const [todayTransactions, setTodayTransactions] = useState([]);
@@ -17,11 +17,11 @@ export const TodayNotes = () => {
 
   if (error) {
     console.error("error fetching today transaction", error);
-    return <div>Error fetching data.</div>;
+    return;
   }
 
   if (!data) {
-    return <div>Loading ... 🫠</div>;
+    return <span className="loading loading-spinner loading-md"></span>;
   }
 
   return (

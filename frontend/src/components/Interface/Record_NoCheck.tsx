@@ -4,6 +4,5 @@ export type RecordNotes_No_CheckBox_Type = {
   description: string;
   amount: string;
   time: string;
-  isChecked: boolean;
-  // handleCheckBox: any;
+  handleCheckBox: () => void;
 };
