@@ -58,7 +58,7 @@ export const Transaction_Function = async (
           transition: "opacity 0.5s ease",
         },
         duration: 5000,
-        icon: "🔥",
+        icon: "🔥",              
       });
     } else {
       return toast.error("Failed to register");

@@ -5,6 +5,7 @@ type Category = {
 };
 
 export type TransactionType = {
+  _id: any;
   amount: string;
   categoryId: Category;
   date: string;

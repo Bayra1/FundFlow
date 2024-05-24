@@ -4,6 +4,7 @@ export const GetAllTransactions = async () => {
   );
 
   if (!response.ok) {
+    console.error("it might be that there is no data or something else");
     throw new Error("Failed to fetch categories");
   }
 
