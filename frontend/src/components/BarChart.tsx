@@ -11,11 +11,6 @@ import {
 import { Bar } from "react-chartjs-2";
 import { Labels, IncomeBar, ExpenseBar } from "./utils/index";
 
-// type dataType = {
-//   labels:string[]
-//   datasets:string[]
-// }
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

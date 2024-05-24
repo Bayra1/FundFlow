@@ -1,6 +1,12 @@
+import { SecondStep_Func } from "./function";
 import { CircleIcon, NoiseBackIcon, WavesIcon, WhiteCubeIcon } from "./icons";
 
-export const FirstCard = ({ currency }: { currency: string }) => {
+type PropsType = {
+   currency:string
+   budget:number
+}
+
+export const FirstCard = ({ budget, currency }:PropsType) => {
   return (
     <section
       className="w-[384px] h-[219px] bg-[#0166FF] pt-[32px] pl-[32px] relative"
@@ -15,9 +21,9 @@ export const FirstCard = ({ currency }: { currency: string }) => {
       </div>
 
       <div className="w-[108px] h-[56px] absolute top-[128px] flex flex-col gap-1">
-        <span className="font-normal text-base">Currency</span>
-        <span className="font-semibold text-2xl text-white leading-8">
-          {currency}
+        <span className="font-normal text-base">Total Money</span>
+        <span className="font-semibold text-2xl text-white leading-8 flex flex-row gap-2">
+        {SecondStep_Func({ quantity: budget, currency })}         
         </span>
       </div>
 

@@ -23,7 +23,7 @@ export const Records = () => {
 
   return (
     <div className="w-full h-fit flex bg-[#F3F4F6] flex-col items-center">
-      <NavBar ToggleModel={ToggleModel}/>
+      <NavBar ToggleModel={ToggleModel} />
       <div className="w-[1200px] h-fit flex flex-row gap-5 mt-[20px]">
         <AsideRecords
           handleCategoryModel={handleCategoryModel}
@@ -35,8 +35,6 @@ export const Records = () => {
       {categoryModel && (
         <AddCategoryModel handleCategoryModel={handleCategoryModel} />
       )}
-      {/* <AddCategoryModel handleCategoryModel={handleCategoryModel}/> */}
-      {/* <AddRecordModel ToggleModel={ToggleModel}/> */}
       <Toaster position="top-center" />
     </div>
   );

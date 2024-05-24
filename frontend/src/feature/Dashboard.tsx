@@ -14,7 +14,7 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit bg-[#F3F4F6] flex flex-col items-center">
+    <div className="w-full h-fit bg-[#F3F4F6] flex flex-col items-center pb-4">
       <NavBar ToggleModel={() => console.log("a")} />
       <WholeCards />
       <TotalBarCharts />

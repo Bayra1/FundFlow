@@ -10,3 +10,5 @@ export * from "./FetchAllCategories";
 export * from "./FetchTodayTransactions";
 export * from "./FetchYesterdayTrans";
 export * from "./GetUserWithInfo";
+export * from "./AllTransactions";
+export * from "./DeleteTransaction";

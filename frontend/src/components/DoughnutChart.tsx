@@ -48,7 +48,7 @@ export const DoughnutChart = () => {
           {data.labels.map((label, index) => (
             <div key={index} className="flex items-center mb-2">
               <div
-                className="w-4 h-4 mr-2"
+                className="w-4 h-4 mr-2 rounded-full"
                 style={{
                   backgroundColor: data.datasets[0].backgroundColor[index],
                 }}

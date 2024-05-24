@@ -1,16 +1,14 @@
-import { RecordNotes_No_CheckBox_Type } from "./Interface";
+import { RecordNotesType } from "./Interface";
 import { SelectedIconComp } from "./SelectedIcon";
 import { FirstRow } from "./utils/Categories";
 
-export const RecordNotes = ({
+export const RecordNotesNoCheckBox = ({
   IconIndex,
-  isChecked,
   transaction_type,
   description,
   amount,
   time,
-  handleCheckBox,
-}: RecordNotes_No_CheckBox_Type) => {
+}: RecordNotesType) => {
   const isValidIndex = IconIndex >= 0 && IconIndex < FirstRow.length;
 
   if (!isValidIndex) {
@@ -43,17 +41,7 @@ export const RecordNotes = ({
         borderRadius: "12px",
       }}
     >
-      <div className="flex flex-row gap-4 items-center">
-        <input
-          onChange={handleCheckBox}
-          checked={isChecked}
-          type="checkbox"
-          className="checkbox border-2"
-          style={{ borderColor: "#D2D4D7" }}
-        />
-        {isChecked ?? (
-          <button className="w-[50px] h-[50px] bg-pink-400">X</button>
-        )}
+      <div className="flex flex-row gap-4 items-center">        
         <div
           style={{
             backgroundColor: transaction_type === "INC" ? "#0166FF" : "#FF4545",

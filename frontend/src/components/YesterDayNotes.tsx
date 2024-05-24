@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RecordNotes, Title } from "./index";
+import { RecordNotesNoCheckBox, Title } from "./index";
 import useSWR from "swr";
 import { FetchYesterdayTrans } from "./function";
 import { TransactionType } from "./Interface";
@@ -17,12 +17,13 @@ export const YesterDayNotes = () => {
 
   if (error) {
     console.error("error fetching today transaction", error);
-    return <div>Error fetching data.</div>;
+    return;
   }
 
   if (!data) {
     return <div>Loading ... 🙅‍♂️</div>;
   }
+
   return (
     <div className="flex w-full flex-col mt-[20px]">
       <Title name="Yesterday" />
@@ -30,7 +31,7 @@ export const YesterDayNotes = () => {
         yesterdayTrans.map((transaction: TransactionType, index: number) => {
           return (
             <div key={index}>
-              <RecordNotes
+              <RecordNotesNoCheckBox
                 description={transaction.description}
                 transaction_type={transaction.transaction_type}
                 IconIndex={transaction.categoryId?.selectedIconIndex}

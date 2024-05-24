@@ -1,6 +1,11 @@
 import { GreenDotSVG, UpArrowIcon } from "./icons";
 
-export const SecondCard = ({ income }: { income: string }) => {
+type PropsType = {
+  income: number;
+  currency: string;
+};
+
+export const SecondCard = ({ income, currency }: PropsType) => {
   return (
     <section
       className="w-[384px] h-[219px] bg-white relative"
@@ -26,7 +31,7 @@ export const SecondCard = ({ income }: { income: string }) => {
       >
         <div className="w-full h-[72px] flex flex-col gap-1">
           <span className="text-3xl text-black font-semibold leading-10">
-            {income}
+            + {income} {currency === "Dollar $" ? "$" : "₮"}
           </span>
           <span className="text-lg font-normal leading-7 text-[#64748B]">
             Your Income Amount

@@ -137,9 +137,45 @@ const getYestedayTransactions = async (_: Request, res: Response) => {
   }
 };
 
+const deleteTransactions = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.body;
+    console.log(id, "id");
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "id is unavailable at the moment",
+      });
+    }
+
+    const result = await TransactionModel.findOneAndDelete(id);
+    console.log(result, "result");
+
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Transaction not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "The transaction is deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error during deleting transaction:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 export {
   CreateTransaction,
   getAllTransactions,
   getTodayTransactions,
   getYestedayTransactions,
+  deleteTransactions,
 };

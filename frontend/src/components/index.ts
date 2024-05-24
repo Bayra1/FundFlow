@@ -52,3 +52,4 @@ export * from "./Date&Time";
 export * from "./AddCategoryModel";
 export * from "./SelectedIcon";
 export * from "./StatesOfTransaction";
+export * from "./Record_NoCheckbox";

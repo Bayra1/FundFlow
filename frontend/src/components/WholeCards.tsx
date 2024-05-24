@@ -18,31 +18,47 @@ export const WholeCards = () => {
     return <div>Loading ... 🫠</div>;
   }
 
-  const TotalExpense = () => {
+  const calculateInc_Exp = () => {
     if (!data || !data.transactions) {
       console.log("there is no data");
-      return 0;
+      return { income: 0, expenses: 0 };
     }
 
-    const expTransactions = data.transactions.filter(
-      (transaction: TransactionType) => transaction.transaction_type === "EXP"
-    );
+    let income = 0;
+    let expenses = 0;
 
-    let sum = 0;
-    expTransactions.forEach((el: TransactionType) => {
-      sum += Number(el.amount);
+    data.transactions.forEach((transaction: TransactionType) => {
+      if (transaction.transaction_type === "EXP") {
+        expenses += Number(transaction.amount);
+      } else if (transaction.transaction_type === "INC") {
+        income += Number(transaction.amount);
+      }
     });
 
-    return sum;
+    return { income, expenses };
   };
 
-  console.log(TotalExpense(), "a");
+  const calculateTotalMoney = () => {
+    const initialBudget = Number(data.info.budget);
+    const { income, expenses } = calculateInc_Exp();
+    const totalMoney = initialBudget - expenses + income;
+    return totalMoney;
+  };
 
   return (
-    <div className="w-[1200px] mt-[20px] flex justify-between flex-row">
-      <FirstCard currency={data.info?.currency ?? ""} />
-      <SecondCard income={data.info?.budget ?? ""} />
-      <ThirdCard currency={data.info?.currency ?? 0} expense={TotalExpense()} />
+    <div className="w-[1200px] mt-[20px] flex justify-between flex-row gap-2">
+      <FirstCard
+        currency={data.info?.currency ?? "$"}
+        budget={calculateTotalMoney()}
+      />
+      <SecondCard
+        currency={data.info?.currency ?? "$"}
+        income={calculateInc_Exp().income ?? ""}
+      />
+      <ThirdCard
+        currency={data.info?.currency ?? "$"}
+        expense={calculateInc_Exp().expenses}
+      />
     </div>
   );
 };
