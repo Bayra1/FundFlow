@@ -16,13 +16,10 @@ export const AddRecordModel = ({ ToggleModel }: propsType) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [payBy, setPayBy] = useState("By Cash");
+  const [payBy, setPayBy] = useState("By Cash 💸");
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = async () => {
-    const categoryId = localStorage.getItem("categoryId");
-    const date = format(startDate, "MMM dd, yyyy");
-    const time = format(selectedTime, "h:mm aa");
     try {
       const categoryId = localStorage.getItem("categoryId");
       const date = format(startDate, "MMM dd, yyyy");

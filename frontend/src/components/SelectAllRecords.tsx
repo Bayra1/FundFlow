@@ -15,27 +15,26 @@ export const SelectAllRecords = () => {
     );
   }
 
-  const { allTransactions } = transContext;
+  const { filteredData } = transContext;
 
   const handleCheckBox = async (id: string) => {
     try {
-      // await DeleteTransaction_Func(id);
+      await DeleteTransaction_Func(id);
     } catch (error) {
       toast.error("Failed to delete transaction");
     }
-    console.log("id:", id);
   };
 
   const calculateInc_Exp = () => {
     let income = 0;
     let expenses = 0;
 
-    if (!allTransactions) {
+    if (!filteredData) {
       toast.error("No data");
       return { income, expenses };
     }
 
-    allTransactions.forEach((transaction: TransactionType) => {
+    filteredData.forEach((transaction: TransactionType) => {
       if (transaction.transaction_type === "EXP") {
         expenses += Number(transaction.amount);
       } else if (transaction.transaction_type === "INC") {
@@ -53,8 +52,8 @@ export const SelectAllRecords = () => {
         expenses={calculateInc_Exp().expenses}
       />
       <div className="flex flex-col w-full gap-1">
-        {allTransactions ? (
-          allTransactions.map((transaction: TransactionType) => (
+        {filteredData ? (
+          filteredData.map((transaction: TransactionType) => (
             <div key={transaction._id}>
               <RecordNotes
                 description={transaction.description}
@@ -71,6 +70,13 @@ export const SelectAllRecords = () => {
         )}
       </div>
       <Toaster position="top-center" />
+      {
+        filteredData?.length === 0 && (
+          <div>
+            there is no such records
+          </div>
+        )
+      }
     </main>
   );
 };

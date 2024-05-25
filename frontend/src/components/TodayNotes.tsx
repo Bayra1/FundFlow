@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { RecordNotesNoCheckBox, Title } from "./index";
 import { FetchTodayTransactions } from "./function";
 import { TransactionType } from "./Interface";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 
 export const TodayNotes = () => {
   const [todayTransactions, setTodayTransactions] = useState([]);
-
   const { data, error } = useSWR("transactions", FetchTodayTransactions);
 
   useEffect(() => {

@@ -3,8 +3,9 @@ import { ControlDateButton } from "./ControlDateButton";
 import { DropDownRecord } from "./DropDown";
 import { Title } from "./Title";
 import useSWR from "swr";
-import { GetUserWithInfo } from "./function";
+import { GetUserWithInfo, SecondStep_Func } from "./function";
 import WarningModal from "./WarningModel";
+import { LoadingPage } from "./Loading/Loading";
 
 interface SubIncomeExpenseProps {
   income: number;
@@ -37,9 +38,8 @@ export const Sub_Income_Expense: React.FC<SubIncomeExpenseProps> = ({
   }
 
   if (!data) {
-    return <span className="loading loading-spinner loading-md"></span>;
+    return <LoadingPage/>;
   }
-
 
   return (
     <div className="flex flex-col gap-2">
@@ -60,15 +60,14 @@ export const Sub_Income_Expense: React.FC<SubIncomeExpenseProps> = ({
       >
         <span className="text-base font-semibold leading-6 text-[#84cc16] flex flex-row gap-2">
           <div className="text-black">{`Income ->`}</div>
-          ToTal
-          <div>{income}</div>
-          {data.info.currency === "Dollar $" ? "$" : "₮"}
+          {SecondStep_Func({ quantity: income, currency: data.info.currency })}
         </span>
         <span className="text-base font-semibold leading-6 text-[#F54948] flex flex-row gap-2">
           <div className="text-black">{`Expenses ->`}</div>
-          ToTal
-          <div>{expenses}</div>
-          {data.info.currency === "Dollar $" ? "$" : "₮"}
+          {SecondStep_Func({
+            quantity: expenses,
+            currency: data.info.currency,
+          })}
         </span>
       </div>
       {!userToken && (

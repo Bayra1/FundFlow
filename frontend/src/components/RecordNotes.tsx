@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { RecordNotes_No_CheckBox_Type } from "./Interface";
 import { SelectedIconComp } from "./SelectedIcon";
 import { FirstRow } from "./utils/Categories";
+import { UserWithInfoContext } from "./context/user";
 
 export const RecordNotes = ({
   IconIndex,
@@ -11,6 +13,14 @@ export const RecordNotes = ({
   handleCheckBox,
 }: RecordNotes_No_CheckBox_Type) => {
   const isValidIndex = IconIndex >= 0 && IconIndex < FirstRow.length;
+
+  const userContext = useContext(UserWithInfoContext);
+
+  if (!userContext) {
+    throw new Error("userContext must be used withing userContextProvider");
+  }
+
+  const { user } = userContext;
 
   if (!isValidIndex) {
     return (
@@ -78,13 +88,16 @@ export const RecordNotes = ({
           </span>
         </div>
       </div>
-      <span
+      <div
         style={{ color: transaction_type === "INC" ? "#23E01F" : "#F54949" }}
         className="text-base font-semibold leading-6 text-[#94A3B8] flex flex-row gap-1"
       >
         {transaction_type === "INC" ? "+" : "-"}
-        {amount}
-      </span>
+        <div className="flex flex-row gap-1">
+          <div>{amount}</div>
+          {user?.info.currency === "Dollar $" ? "$" : "₮"}
+        </div>
+      </div>
     </div>
   );
 };
