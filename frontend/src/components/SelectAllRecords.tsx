@@ -73,7 +73,7 @@ export const SelectAllRecords = () => {
       {
         filteredData?.length === 0 && (
           <div>
-            there is no such records
+            there is no records
           </div>
         )
       }

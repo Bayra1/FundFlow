@@ -6,7 +6,6 @@ import useSWR from "swr";
 import { GetUserWithInfo, SecondStep_Func } from "./function";
 import WarningModal from "./WarningModel";
 import { LoadingPage } from "./Loading/Loading";
-
 interface SubIncomeExpenseProps {
   income: number;
   expenses: number;

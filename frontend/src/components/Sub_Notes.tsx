@@ -23,7 +23,7 @@ export const Sub_Notes: React.FC<SubNotesProps> = ({
             propColor={selectedColor}
             propIndex={selectedIconIndex!}
           />
-          <span className="text-base leading-6 font-normal text-[#1F2937]">
+          <span className="text-base leading-6 font-normal text-[#1F2937] hover:text-black">
             {name}
           </span>
         </div>

@@ -54,3 +54,4 @@ export * from "./StatesOfTransaction";
 export * from "./Record_NoCheckbox";
 export * from "./SelectAllCheckBox";
 export * from "./SubIncome&Expense";
+export * from "./SubTitleForDoChart";

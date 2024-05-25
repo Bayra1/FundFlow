@@ -1,7 +1,7 @@
-import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { DoughnutSetsData } from "./utils";
+import { SubTitleForDoChart } from "./SubTitleForDoChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -26,19 +26,7 @@ export const DoughnutChart = () => {
       className="w-[588px] h-[382px] bg-white flex flex-col"
       style={{ borderRadius: "18px" }}
     >
-      <section
-        className="w-full h-[56px] flex flex-row gap-[8px] items-center"
-        style={{
-          padding: "16px 24px",
-          borderBottomWidth: "2px",
-          borderStyle: "solid",
-          borderColor: "#E2E8F0",
-        }}
-      >
-        <span className="text-black font-semibold text-base leading-6">
-          - Expense
-        </span>
-      </section>
+      <SubTitleForDoChart />
       <div className="w-full h-full flex flex-row gap-8">
         <section className="w-[50%] h-full p-8">
           <Doughnut data={data} options={options as any} />

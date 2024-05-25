@@ -71,6 +71,4 @@ const getAllInfo = async (_: Request, res: Response) => {
   }
 };
 
-const getInfoBasedOnUserId = async (req: Request, res: Response) => {};
-
 export { createInfo, getAllInfo };

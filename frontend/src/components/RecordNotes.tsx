@@ -35,7 +35,7 @@ export const RecordNotes = ({
         }}
       >
         <div className="flex flex-row gap-4 items-center">
-          <span>Error: Invalid IconIndex</span>
+          <span>Error: There is no such icon</span>
         </div>
       </div>
     );
