@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { Labels, IncomeBar, ExpenseBar } from "./utils/index";
+import { TransactionContext } from "./context/allTransactions";
+import options from "./utils/BarChart/Options";
 
 ChartJS.register(
   CategoryScale,
@@ -21,24 +23,70 @@ ChartJS.register(
 );
 
 export const BarChart = () => {
-  const labels = Labels;
-  const data = {
-    labels: labels,
-    datasets: [IncomeBar, ExpenseBar],
-  };
+  const transContext = useContext(TransactionContext);
+  const [inc_ExpData, setInc_ExpData] = useState<any[]>([]);
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },       
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
+  if (!transContext) {
+    throw new Error(
+      "Category must be used within a TransactionContextProvider"
+    );
+  }
+
+  const { filteredData } = transContext;
+
+  useEffect(() => {
+    const desiredData = filteredData?.filter((item) => {
+      return item.transaction_type && item.amount && item.date;
+    });
+
+    setInc_ExpData(desiredData || []);
+  }, [filteredData]);
+
+  const monthTotals: {[key: string]: {income: number, expense: number}} = {};
+
+  inc_ExpData.forEach((item) => {
+    const date = new Date(item.date);
+    const month = date.getMonth();
+    const amount = Number(item.amount);
+
+    if (!monthTotals[month]) {
+      monthTotals[month] = { income: 0, expense: 0 };
+    }
+
+    if (item.transaction_type === "INC") {
+      monthTotals[month].income += amount;      
+    } else if (item.transaction_type === "EXP") {
+      monthTotals[month].expense += amount;
+    }
+  });
+
+  const incomeData = Object.values(monthTotals).map((total) => total.income);
+  const expenseData = Object.values(monthTotals).map((total) => total.expense);
+
+  const monthLabels = Object.keys(monthTotals).map((monthNumber) => {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return monthNames[parseInt(monthNumber)];
+  });
+
+
+  const data = {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: "Income",
+        data: incomeData,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
       },
-    },
+      {
+        label: "Expenses",
+        data: expenseData,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+    ],
   };
 
   return (
@@ -65,3 +113,6 @@ export const BarChart = () => {
     </main>
   );
 };
+
+
+

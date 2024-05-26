@@ -1,4 +1,7 @@
-export const DoughnutSetsData = [
+
+
+
+const DoughnutSetsData = [
   {
     data: [7000, 4000, 9000, 1000, 2000],
     backgroundColor: [
@@ -18,3 +21,8 @@ export const DoughnutSetsData = [
     borderWidth: 1,
   },
 ];
+
+export const dataOfDoghnut = {
+  labels: ["Income", "Expenses", "test", "a", "b"],
+  datasets: DoughnutSetsData,
+};

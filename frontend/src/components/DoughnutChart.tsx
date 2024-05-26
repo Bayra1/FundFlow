@@ -1,24 +1,54 @@
+"use client";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { DoughnutSetsData } from "./utils";
 import { SubTitleForDoChart } from "./SubTitleForDoChart";
+// Corrected import path
+import { useContext, useEffect, useState } from "react";
+import { TransactionContext } from "./context/allTransactions";
+import { options } from "./utils/Doghnut";
+import { generateColors } from "./function";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const DoughnutChart = () => {
-  const data = {
-    labels: ["Income", "Expenses", "test", "a", "b"],
-    datasets: DoughnutSetsData,
-  };
+  const transContext = useContext(TransactionContext);
+  const [dataOf_Cat_Trans, setDataOf_Cat_Trans] = useState<any[]>([]);
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top",
-      },
+  if (!transContext) {
+    throw new Error(
+      "Category must be used within a TransactionContextProvider"
+    );
+  }
+
+  const { filteredData } = transContext;
+
+  useEffect(() => {
+    const desiredData = filteredData?.filter((item) => {
+      return (
+        item.transaction_type === "EXP" &&
+        item.amount &&
+        item.categoryId.name &&
+        item.categoryId.selectedColor
+      );
+    });
+
+    setDataOf_Cat_Trans(desiredData || []);
+  }, [filteredData]);
+
+  const DoughnutSetsData = [
+    {
+      data: dataOf_Cat_Trans.map((item) => item.amount),
+      backgroundColor: generateColors(dataOf_Cat_Trans.length),
+      borderColor: generateColors(dataOf_Cat_Trans.length),
+      borderWidth: 1,
     },
+  ];
+
+  const labels = dataOf_Cat_Trans.map((item) => item.categoryId.name);
+
+  const data = {
+    // labels:labels,
+    datasets: DoughnutSetsData,
   };
 
   return (
@@ -32,8 +62,8 @@ export const DoughnutChart = () => {
           <Doughnut data={data} options={options as any} />
         </section>
 
-        <section className="w-1/3 flex flex-col mt-[70px] gap-5">
-          {data.labels.map((label, index) => (
+        <section className="w-1/3 flex flex-col mt-3 gap-5">
+          {labels.map((label, index) => (
             <div key={index} className="flex items-center mb-2">
               <div
                 className="w-4 h-4 mr-2 rounded-full"

@@ -1,7 +1,11 @@
+import { usePathname } from "next/navigation";
 import { GuideButton } from "./GuideButton";
 import { CubeIcon, Plus } from "./icons";
+import { useRouter } from "next/navigation";
 
 export const NavBar = ({ ToggleModel }: { ToggleModel: () => void }) => {
+  const pathName = usePathname();
+  const router = useRouter();
   return (
     <main
       style={{ padding: "16px 120px 16px 120px" }}
@@ -15,7 +19,13 @@ export const NavBar = ({ ToggleModel }: { ToggleModel: () => void }) => {
 
       <section className="flex flex-row gap-2 items-center">
         <button
-          onClick={()=> ToggleModel()}
+          onClick={() => {
+            if (pathName !== "/Record") {
+              router.push("/Record");
+            } else {
+              ToggleModel();
+            }
+          }}
           className="flex flex-row gap-2 items-center bg-[#0166FF] p-[15px] rounded-2xl"
         >
           <Plus />

@@ -12,3 +12,4 @@ export * from "./FetchYesterdayTrans";
 export * from "./GetUserWithInfo";
 export * from "./AllTransactions";
 export * from "./DeleteTransaction";
+export * from "./GenerateRandomColor";
