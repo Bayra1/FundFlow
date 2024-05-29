@@ -15,11 +15,11 @@ export const FormsOnLogin = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (currentToken) {
-      localStorage.setItem("token", currentToken);
-    }
-  }, [currentToken]);
+  // useEffect(() => {
+  //   if (currentToken) {
+  //     localStorage.setItem("token", currentToken);
+  //   }
+  // }, [currentToken]);
 
   const formik = useFormik({
     initialValues: {

@@ -37,7 +37,7 @@ export const UserWithInfoContextProvider = ({
       <WarningModal
         name="You have not logged in"
         path="/Login"
-        instruction="Back To Login"
+        instruction="Go To Login"
       />
     );
   }
@@ -66,8 +66,6 @@ export const UserWithInfoContextProvider = ({
   if (!data) {
     return <LoadingPage/>;
   }
-
-  //   console.log(data, "test user");
 
   return (
     <UserWithInfoContext.Provider value={{ user }}>

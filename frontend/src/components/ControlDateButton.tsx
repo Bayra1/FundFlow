@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { LeftSideArrowIcon, RightSideArrowIcon } from "./icons";
 import { TransactionContext } from "./context/allTransactions";
 import { format } from "date-fns";
@@ -43,7 +43,7 @@ export const ControlDateButton = () => {
 
   const filterDataBasedOnDate = (day: number) => {
     const targetDate = getDateFormatted(day);
-
+ 
     const filteredTransactions = allTransactions?.filter(
       (item: TransactionType) => item.date === targetDate
     );

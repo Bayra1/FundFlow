@@ -1,5 +1,4 @@
-'use client'
-import { useEffect, useState } from "react";
+"use client"
 import { LineOne } from "./LineOne";
 import { SubTitle } from "./SubTitle";
 import { CurrencyIcon } from "./icons";
@@ -13,11 +12,7 @@ type PropsType = {
   nextPage: () => void;
 };
 
-const currentToken: string | null = localStorage.getItem("token");
-
 export const FirstStep = ({ nextPage }: PropsType) => {
-  const [token, setToken] = useState<string | null>(currentToken);
-
   const formik = useFormik({
     initialValues: {
       currencyOption: "",
@@ -33,10 +28,6 @@ export const FirstStep = ({ nextPage }: PropsType) => {
       }
     },
   });
-
-  useEffect(() => {
-    setToken(currentToken);
-  }, []);
 
   return (
     <main className="flex flex-col">
@@ -74,13 +65,6 @@ export const FirstStep = ({ nextPage }: PropsType) => {
           Confirm
         </button>
       </div>
-      {token ? null : (
-        <WarningModal
-          name="You have not logged in"
-          path="/Login"
-          instruction="Back To Login"
-        />
-      )}
     </main>
   );
 };
