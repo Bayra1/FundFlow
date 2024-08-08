@@ -84,7 +84,7 @@ export const RecordNotesNoCheckBox = ({
           <div>
           {amount}
           </div>
-          {user?.info.currency === "Dollar $" ? "$" : "₮"}
+          {/* {user?.info.currency === "Dollar $" ? "$" : "₮"} */}
         </div>
       </div>
     </div>

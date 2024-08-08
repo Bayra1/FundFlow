@@ -59,14 +59,14 @@ export const Sub_Income_Expense: React.FC<SubIncomeExpenseProps> = ({
       >
         <span className="text-base font-semibold leading-6 text-[#84cc16] flex flex-row gap-2">
           <div className="text-black">{`Income ->`}</div>
-          {SecondStep_Func({ quantity: income, currency: data.info.currency })}
+          {/* {SecondStep_Func({ quantity: income, currency: data.info.currency })} */}
         </span>
         <span className="text-base font-semibold leading-6 text-[#F54948] flex flex-row gap-2">
           <div className="text-black">{`Expenses ->`}</div>
-          {SecondStep_Func({
+          {/* {SecondStep_Func({
             quantity: expenses,
             currency: data.info.currency,
-          })}
+          })} */}
         </span>
       </div>
       {!userToken && (

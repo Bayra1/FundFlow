@@ -95,7 +95,7 @@ export const RecordNotes = ({
         {transaction_type === "INC" ? "+" : "-"}
         <div className="flex flex-row gap-1">
           <div>{amount}</div>
-          {user?.info.currency === "Dollar $" ? "$" : "₮"}
+          {/* {user?.info.currency === "Dollar $" ? "$" : "₮"} */}
         </div>
       </div>
     </div>
